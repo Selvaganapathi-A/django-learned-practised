@@ -20,13 +20,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-e3aerr$r#-jge13f-4cn3f=1g1(_4rmys3#6=n4%0$=v0wdu!o"
+SECRET_KEY = (
+    "ZTVUosp2rA0KgfETd3pqvnUQUksk0JoQM847Q7fwrdVGXjFjbr206h42tfAHolP2"
+    "ceYU12nawHiR8bRGFB64fFS4gv0vbNBqlGN2emsqh9TjsV8O8qhcep3gCoNxIx4Q"
+    "zWO7eA953eqUSYoTOqJyzXgVRRH7RMvddH4ZjE7GqMhTCX0OZW31BNKCQtJzYHVz"
+    "1Hlml3QV793HokPJIEFTqB9zqS19vkamoHC09tAaNbTzwn0xlmqlK7veNSdW2i46"
+    "Xhj9pd0dWWPTTGQozZBSYVHMjEHw0pANzPRdXwNLlWLVcibnN8N6pfkLMfy8di28"
+    "V7ivNU88sWLPXXPC3ADBJgY8CZ02PM1F27shjbGuPmVDiWT4OZZe7GwbEnxyT65v"
+    "ZxvhjIJmsAmnV1fGpEYzhT9x7bDBg4aYrQe87KiCkV7u0ehsArxJpJt8s029xGXf"
+    "UZKJi3VGxUibDfrPk9SRjn1V7FuZG8dhAW2isBNpxwUXAxQTYUvDzngf8VxGVyqA"
+    "s6BxJNfEpn60wlI7t5L1gV9TAoiQmH925OFXGdop83yaI2Noyhiu9xHjgXBSOUwg"
+    "JtU5mejLmHP3Q6v3SWY5TEgppL3tjKJMhHASHTAeIvioUKp1rucCiCtpsQQdpiyM"
+    "Mdlrmcn1l663Q2Qxohbk5RImW3kceoCC2bDAIBukhFoSyaqVdYx7xC9eNwPLpOhp"
+    "AQ7n8jdiIJaqAuo6mraeCMlQzpRHZfmLmwxG6XunpylbST4AfG3yNGQW1BEbOgtd"
+    "IKNKQcMgMAo94ab1ibr6hxgViHulc1h4EgKzRfBRHDgZ13f9O9W76J0CwNJ4REfs"
+    "eoQpmS392hBUS47QgUAv9Wnih0ojmS3z687ZblTUY8iNQp8ZiGMXQeuuvMt85w18"
+    "RC5sZFL3CSNQFjgudOwA23qYOeNTS0DAm1qoxzV1AXON8t33q28FcnhgxyRrwsyX"
+    "YGD267g2BXFyN6wE1hfNQZs5GeD2vcMrqFjD6mylUfzoH6NmlfmVdyk6O8JglwsC"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+APPEND_SLASH = True
 
 # Application definition
 
@@ -37,6 +55,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "index.apps.IndexConfig",
+    "app_001.apps.App001Config",
+    "app_002.apps.App002Config",
 ]
 
 MIDDLEWARE = [
@@ -103,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en-in"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Calcutta"
 
 USE_I18N = True
 
@@ -115,7 +136,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "files" / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "static"
+
+STATIC_URL = "static/" if DEBUG else "http://localhost:4000/"
+
+# Media Files
+
+MEDIA_ROOT = BASE_DIR / "files" / "media"
+
+MEDIA_URL = "media/" if DEBUG else "http://localhost:3000/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

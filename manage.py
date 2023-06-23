@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
+import subprocess
 import sys
 
 
 def main():
+    subprocess.run(
+        ("cls",),
+        shell=True,
+    )
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Organisation.settings")
     try:
