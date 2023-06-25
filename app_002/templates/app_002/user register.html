@@ -1,0 +1,37 @@
+{% extends "index/_base.html" %} {% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_002/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+
+<form action="" method="post" class="user-register">
+    <div>
+        <h2>Register User</h2>
+    </div>
+    {% csrf_token %}
+    <div>
+        <label class="form-label" for="firstname">First Name</label>
+        <input class="form-field" type="text" name="firstname" id="firstname" required />
+    </div>
+
+    <div>
+        <label class="form-label" for="lastname">Last Name </label>
+        <input class="form-field" type="text" name="lastname" id="lastname" required />
+    </div>
+    <div>
+        <label class="form-label" for="address"> Address </label>
+        <textarea class="form-field" name="address" id="address" cols="50" rows="10"> </textarea>
+    </div>
+    <div>
+        <label class="form-label" for=""></label>
+        <input class="form-btn" type="submit" value="Save" />
+    </div>
+</form>
+
+{% endblock main %}

@@ -1,0 +1,45 @@
+:root {
+    --bg-angle: 45deg;
+
+    --alpha_dark: 0.1;
+    --alpha_light: 0.75;
+
+    --bg-color-dark-01: hsla(240 100% 50% / var(--alpha_dark));
+    --bg-color-dark-02: hsla(180 100% 50% / var(--alpha_dark));
+    --bg-color-dark-03: hsla(120 100% 25% / var(--alpha_dark));
+
+    --bg-color-light-01: hsla(240 100% 50% / var(--alpha_light));
+    --bg-color-light-02: hsla(180 100% 50% / var(--alpha_light));
+    --bg-color-light-03: hsla(120 100% 25% / var(--alpha_light));
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(
+            var(--bg-angle, 35deg),
+            transparent,
+            var(--bg-color-dark-01),
+            var(--bg-color-dark-02),
+            var(--bg-color-dark-03),
+            transparent
+        );
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: linear-gradient(
+            var(--bg-angle, 15deg),
+            transparent,
+            var(--bg-color-light-01),
+            var(--bg-color-light-02),
+            var(--bg-color-light-03),
+            transparent
+        );
+    }
+}
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

@@ -28,8 +28,8 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls),
     path("", include("index.urls", namespace="index")),
-    path("app01", include("app_001.urls", namespace="app_001")),
-    path("app02", include("app_002.urls", namespace="app_002")),
+    path("app01/", include("app_001.urls", namespace="app_001")),
+    path("app02/", include("app_002.urls", namespace="app_002")),
 ]
 
 

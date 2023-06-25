@@ -8,4 +8,5 @@ app_name: str = "app02"
 # add your routes here.
 urlpatterns = [
     path("", views.index, name="index"),
+    path("register/", views.register, name="register"),
 ]

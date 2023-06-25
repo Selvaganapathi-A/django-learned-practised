@@ -98,7 +98,28 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
+    "postgresql": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "Googol",
+        "ATOMIC_REQUESTS": False,
+        "AUTOCOMMIT": True,
+        "CONN_MAX_AGE": 0,
+        "CONN_HEALTH_CHECKS": False,
+        "OPTIONS": {},
+        "TIME_ZONE": None,
+        "USER": "postgres",
+        "PASSWORD": "Windows@11",
+        "HOST": "localhost",
+        "PORT": "5432",
+        "TEST": {
+            "CHARSET": None,
+            "COLLATION": None,
+            "MIGRATE": True,
+            "MIRROR": None,
+            "NAME": None,
+        },
+    },
 }
 
 
@@ -155,3 +176,18 @@ MEDIA_URL = "media/" if DEBUG else "http://localhost:3000/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Enable for deployment
+
+# CSRF_COOKIE_SECURE = True
+
+# SECURE_HSTS_SECONDS = 3600
+
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# SECURE_SSL_REDIRECT = True
+
+# SESSION_COOKIE_SECURE = True
+
+# SECURE_HSTS_PRELOAD = True

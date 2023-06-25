@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse, HttpResponsePermanentRedirect
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.shortcuts import render
+from django.template import loader, Template
 
 # Create your views here.
 

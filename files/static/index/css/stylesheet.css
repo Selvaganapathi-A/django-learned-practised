@@ -1,5 +1,7 @@
 @import "navbar.css";
 
+@import "site_background.css" screen;
+
 *,
 *::before,
 *::after {
@@ -17,6 +19,5 @@ html {
 
 body {
     width: 100svw;
-
     padding: 0 1rem;
 }

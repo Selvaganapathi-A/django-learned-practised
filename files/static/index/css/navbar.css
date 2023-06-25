@@ -1,4 +1,4 @@
-.nav-bar.primary {
+.nav-bar {
     width: 100%;
     display: grid;
 
@@ -14,8 +14,12 @@
     margin: auto;
 }
 
-.nav-bar.primary .icon {
+.primary .icon {
     font-size: 2rem;
+}
+
+.secondary .icon {
+    font-size: 1rem;
 }
 
 .nav-bar.primary > li {
