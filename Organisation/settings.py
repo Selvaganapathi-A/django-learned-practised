@@ -40,7 +40,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "*",
@@ -173,13 +173,13 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "static"
 
-STATIC_URL = "static/" if DEBUG else "http://localhost:4000/"
+STATIC_URL = "static/" if DEBUG else "http://localhost:3000/"
 
 # Media Files
 
 MEDIA_ROOT = BASE_DIR / "files" / "media"
 
-MEDIA_URL = "media/" if DEBUG else "http://localhost:3000/"
+MEDIA_URL = "media/" if DEBUG else "http://localhost:4000/"
 
 
 # Default primary key field type
