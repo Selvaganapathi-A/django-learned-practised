@@ -30,6 +30,14 @@ urlpatterns = [
     path("", include("index.urls", namespace="index")),
     path("app01/", include("app_001.urls", namespace="app_001")),
     path("app02/", include("app_002.urls", namespace="app_002")),
+    path("app03/", include("app_003.urls", namespace="app_003")),
+    path("app04/", include("app_004.urls", namespace="app_004")),
+    path("app05/", include("app_005.urls", namespace="app_005")),
+    path("app06/", include("app_006.urls", namespace="app_006")),
+    path("app07/", include("app_007.urls", namespace="app_007")),
+    path("app08/", include("app_008.urls", namespace="app_008")),
+    path("app09/", include("app_009.urls", namespace="app_009")),
+    path("app10/", include("app_010.urls", namespace="app_010")),
 ]
 
 

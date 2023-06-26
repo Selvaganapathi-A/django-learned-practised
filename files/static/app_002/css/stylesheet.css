@@ -32,7 +32,7 @@
     border: none;
     background: linear-gradient(to top, #ffffff10, #ffffff40);
     font-size: 1rem;
-    padding: 1rem;
+    padding: 0.2rem;
 }
 
 .form-field:focus {

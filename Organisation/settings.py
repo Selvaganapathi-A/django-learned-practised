@@ -40,9 +40,11 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "*",
+]
 
 APPEND_SLASH = True
 
@@ -58,6 +60,14 @@ INSTALLED_APPS = [
     "index.apps.IndexConfig",
     "app_001.apps.App001Config",
     "app_002.apps.App002Config",
+    "app_003.apps.App003Config",
+    "app_004.apps.App004Config",
+    "app_005.apps.App005Config",
+    "app_006.apps.App006Config",
+    "app_007.apps.App007Config",
+    "app_008.apps.App008Config",
+    "app_009.apps.App009Config",
+    "app_010.apps.App010Config",
 ]
 
 MIDDLEWARE = [
