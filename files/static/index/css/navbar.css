@@ -1,5 +1,14 @@
+.navbar + .navbar {
+    padding-top: 1rem;
+}
+
 .nav-bar {
     width: 100%;
+    margin: auto;
+    list-style-type: none;
+}
+
+.nav-bar.primary {
     display: grid;
 
     justify-content: center;
@@ -8,10 +17,9 @@
     justify-items: center;
     align-items: center;
 
-    grid-template-columns: repeat(auto-fit, 8rem);
+    grid-template-columns: repeat(auto-fit, 4rem);
+    grid-template-rows: repeat(auto-fit, 4rem);
     gap: 1rem;
-    list-style-type: none;
-    margin: auto;
 }
 
 .primary .icon {
@@ -28,32 +36,31 @@
     align-items: flex-end;
 }
 
-a.nav-link {
+a {
     text-decoration: none;
-    color: currentColor;
+    color: crimson;
     position: relative;
 }
 
-a.nav-link::after {
+a::after {
     content: "";
-
-    background-color: var(--fg-color, white);
+    background-color: currentColor;
 
     z-index: -1;
 
     position: absolute;
 
     left: 50%;
-    bottom: -6px;
+    bottom: -2px;
 
     width: 0;
-    height: 4px;
+    height: 1px;
 
     transform: translate(-50%);
 
     transition: width 150ms linear;
 }
 
-a.nav-link:hover::after {
+a:hover::after {
     width: 100%;
 }

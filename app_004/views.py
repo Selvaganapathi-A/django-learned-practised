@@ -52,3 +52,7 @@ class MyTemplateView(TemplateView):
 # print()
 # help(Homeview)
 # print()
+
+
+class MyCreateView(CreateView):
+    pass

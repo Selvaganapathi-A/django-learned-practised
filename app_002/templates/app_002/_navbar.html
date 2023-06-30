@@ -1,3 +1,18 @@
 <ul class="nav-bar secondary">
-    <li><a href="{% url 'app02:register' %}" class="nav-link icon">Register</a></li>
+    <h3>Base Views</h3>
+    <li><a href="{% url 'app02:myview' %}" class="nav-link">My View</a></li>
+    <li><a href="{% url 'app02:mytemplateview' %}" class="nav-link">My Template View</a></li>
+    <li><a href="{% url 'app02:myredirectview' %}" class="nav-link">My Redirect View</a></li>
+    <li>
+        <a href="{% url 'app02:mypermenantredirectview' %}" class="nav-link">My Permenant Redirect View</a>
+    </li>
+    <h3>Generic Display Views</h3>
+    <!-- <li><a href="{% url 'app02:mydetailview' 1 %}" class="nav-link">My Detail View</a></li> -->
+    <li><a href="{% url 'app02:mylistview' %}">My List View</a></li>
+    <h3>Generic Editing Views</h3>
+    <li><a href="{% url 'app02:contactformview' %}" class="nav-link">My Form View</a></li>
+
+    <li><a href="{% url 'app02:authorcreateview' %}">My Create View</a></li>
+    <br />
+    <li><a href="{% url 'app02:authorlistview' %}">Author List View</a></li>
 </ul>

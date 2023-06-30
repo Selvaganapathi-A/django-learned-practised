@@ -11,7 +11,7 @@ def index(req: HttpRequest):
         request=req,
         template_name="app_001/index.html",
         context={
-            "web_page_title": "App __1",
+            "web_page_title": "Function Views...",
         },
     )
 
@@ -23,7 +23,7 @@ def method_01(request: HttpRequest) -> HttpResponse:
 
 # Render from HTML File
 def method_02(request: HttpRequest) -> HttpResponse:
-    template_: Template = loader.get_template("app_001/index.html")
+    template_: Template = loader.get_template("app_001/view_001.html")
     page_title: str = "Method 2"
     return HttpResponse(
         template_.render(
@@ -40,7 +40,7 @@ def method_03(request: HttpRequest) -> HttpResponse:
     page_title: str = "Method 3"
     return render(
         request=request,
-        template_name="app_001/index.html",
+        template_name="app_001/view_002.html",
         context={
             "web_page_title": page_title,
         },

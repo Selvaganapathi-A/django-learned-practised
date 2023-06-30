@@ -1,0 +1,23 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_002/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+
+<h1>Form View</h1>
+
+<form method="post">
+    <p>Are you sure you want to delete it?</p>
+    {% csrf_token %}
+    <p>{{ object.name }}</p>
+    <input type="submit" value="Delete" />
+</form>
+{% endblock main %}

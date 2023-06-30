@@ -1,0 +1,14 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_004/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Experimental Data ...</h1>
+<ul>
+    {% for data in sequence %}
+    <li><span>{{data}}</span></li>
+    {% endfor %}
+</ul>
+{% endblock main %}

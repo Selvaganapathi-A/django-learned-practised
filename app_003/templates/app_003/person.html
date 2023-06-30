@@ -1,0 +1,80 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_003/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>App 3</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <!--  -->
+    {{person.as_div}}
+
+    <input type="submit" value="Save this Person." />
+</form>
+<hr />
+
+<style>
+    textarea.form-field {
+        resize: none;
+    }
+    .form-field {
+        background-color: #ffffff40;
+    }
+    .form-field:focus-within {
+        outline: 2px solid red;
+    }
+    ul.errorlist {
+        color: red;
+    }
+</style>
+<br />
+<hr />
+<hr />
+<hr />
+<br />
+
+<form action="" method="post">
+    {% csrf_token %} {% for field in person %}
+    <div>
+        {% if field.errors %}
+        <ul class="errorlist">
+            {% for error in field.errors %}
+
+            <li><span class="error"> {{error}} </span></li>
+            {% endfor %}
+        </ul>
+        {% else %} {{field.errors}} {% endif %}
+
+        <br />
+        {{field.label_tag}} - label_tag
+        <br />
+        {{field}} - field
+        <br />
+        {{field.html_name}} - html_name
+        <br />
+        {{field.id_for_label}} - id_for_label
+        <br />
+        {{field.is_hidden}} - is_hidden
+        <br />
+        {{field.label}} - label
+
+        <br />
+        {{field.label_tag}} - label_tag
+        <br />
+        {{field.value}} - value
+        <br />
+        {% if field.help_text %}
+        <p><span>{{field.help_text}}</span></p>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
+
+{% endblock main %}

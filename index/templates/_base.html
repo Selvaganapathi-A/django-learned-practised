@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'index/css/stylesheet.css' %}" />
+        {% block stylesheet %} {% endblock stylesheet %}
+        <link rel="shortcut icon" href="{% static 'favicon.png' %}" type="image/png" />
+        <title>{{web_page_title}}</title>
+    </head>
+    {% include "index/_navbar.html" %}
+    <br />
+    <!--  -->
+    {% block navbar %} {% endblock navbar %}
+    <br />
+    <!--  -->
+    {% block main %} {% endblock main %}
+    <body></body>
+</html>
