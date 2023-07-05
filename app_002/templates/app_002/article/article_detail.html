@@ -11,25 +11,21 @@
 {% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
 <!--  -->
 {% block main %}
-<h1>My Detail View.</h1>
-<p>{{now|date}}</p>
-<br />
-
-<br />
-<h3>{{object.headline}} - <span>{{object.author}}</span></h3>
+<h1>
+    {{object.headline}} -
+    <span><a href="{% url 'app02:author-detail' object.author.pk %}">{{ object.author.name }}</a></span>
+</h1>
 <br />
 <span>Posted on : {{object.date_posted|date}}</span>
-
 {% for content in contents %}
 <p class="article-content">{{content}}</p>
 {% endfor %}
 <br />
-<!-- <p>{{object.content}}</p> -->
-
 <style>
     .article-content {
         text-wrap: balance;
         color: yellow;
+        max-width: 80%;
     }
 </style>
 {% endblock main %}

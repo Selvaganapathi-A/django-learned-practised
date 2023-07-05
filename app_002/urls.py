@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, views_001, views_002, views_003
+from . import views
 
 # Put app name here
 app_name: str = "app02"
@@ -9,27 +9,59 @@ app_name: str = "app02"
 urlpatterns = [
     path("", views.index, name="index"),
     #
-    path("myview/", views_001.MyView.as_view(), name="myview"),
-    path("mytemplateview/", views_001.MyTemplateView.as_view(), name="mytemplateview"),
-    path("myredirectview", views_001.myRedirectView.as_view(), name="myredirectview"),
+    path("view/basic-view/", views.BasicView.as_view(), name="basic-view"),
     path(
-        "mypermenantredirectview",
-        views_001.MyPermenantRedirectView.as_view(),
-        name="mypermenantredirectview",
+        "view/template-view/",
+        views.ArticleAuthorList.as_view(),
+        name="template-view",
     ),
     #
-    path("contactformview/", views_003.ContactFormView.as_view(), name="contactformview"),
-    path("mydetailview/<int:pk>/", views_002.MyDetailView.as_view(), name="mydetailview"),
-    path("mylistview/", views_002.MyListView.as_view(), name="mylistview"),
-    #
-    path("authorcreateview/", views_003.AuthorCreateView.as_view(), name="authorcreateview"),
     path(
-        "authorupdateview/<int:pk>/", views_003.AuthorUpdateView.as_view(), name="authorupdateview"
+        "temporary-redirect/<term>",
+        views.TemporaryRedirect.as_view(),
+        name="temporary-redirect",
     ),
     path(
-        "authordeleteview/<int:pk>/", views_003.AuthorDeleteView.as_view(), name="authordeleteview"
+        "permenant-redirect/",
+        views.PermenantRedirect.as_view(),
+        name="permenant-redirect",
     ),
     #
-    path("authordetail/<int:pk>/", views_003.AuthorDetailView.as_view(), name="authordetailview"),
-    path("authorlist/", views_003.AuthorListView.as_view(), name="authorlistview"),
+    path(
+        "complaint/",
+        views.CustomerComplaints.as_view(),
+        name="customer-complaint",
+    ),
+    # list view
+    path("article/list", views.ArticleList.as_view(), name="article-list"),
+    # Detail view
+    path(
+        "article/detail/<int:pk>",
+        views.ArticleDetail.as_view(),
+        name="article-detail",
+    ),
+    # Author
+    # display views
+    path("author/list", views.AuthorList.as_view(), name="author-list"),
+    path(
+        "author/detail/<int:pk>/",
+        views.AuthorDetail.as_view(),
+        name="author-detail",
+    ),
+    # edit views
+    path(
+        "author/create/",
+        views.AuthorCreate.as_view(),
+        name="author-create",
+    ),
+    path(
+        "author/update/<int:pk>/",
+        views.AuthorUpdate.as_view(),
+        name="author-update",
+    ),
+    path(
+        "author/delete/<int:pk>/",
+        views.AuthorDelete.as_view(),
+        name="author-delete",
+    ),
 ]

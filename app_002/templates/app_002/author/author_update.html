@@ -11,9 +11,7 @@
 {% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
 <!--  -->
 {% block main %}
-
-<h1>Form View</h1>
-
+<h1>Update Author</h1>
 <form method="post">
     {% csrf_token %} {{ form.as_div }}
     <input type="submit" value="Save" />

@@ -1,18 +1,18 @@
 <ul class="nav-bar secondary">
     <h3>Base Views</h3>
-    <li><a href="{% url 'app02:myview' %}" class="nav-link">My View</a></li>
-    <li><a href="{% url 'app02:mytemplateview' %}" class="nav-link">My Template View</a></li>
-    <li><a href="{% url 'app02:myredirectview' %}" class="nav-link">My Redirect View</a></li>
-    <li>
-        <a href="{% url 'app02:mypermenantredirectview' %}" class="nav-link">My Permenant Redirect View</a>
-    </li>
-    <h3>Generic Display Views</h3>
-    <!-- <li><a href="{% url 'app02:mydetailview' 1 %}" class="nav-link">My Detail View</a></li> -->
-    <li><a href="{% url 'app02:mylistview' %}">My List View</a></li>
-    <h3>Generic Editing Views</h3>
-    <li><a href="{% url 'app02:contactformview' %}" class="nav-link">My Form View</a></li>
-
-    <li><a href="{% url 'app02:authorcreateview' %}">My Create View</a></li>
+    <li><a href="{% url 'app02:basic-view' %}" class="nav-link">Basic View</a></li>
     <br />
-    <li><a href="{% url 'app02:authorlistview' %}">Author List View</a></li>
+    <li><a href="{% url 'app02:template-view' %}" class="nav-link">Template View</a></li>
+    <br />
+    <li>
+        <a href="{% url 'app02:temporary-redirect' 'quora files' %}" class="nav-link">Temporary Redirect to Homepage</a>
+    </li>
+    <li><a href="{% url 'app02:permenant-redirect' %}" class="nav-link">Permenant Redirect to Homepage</a></li>
+    <br />
+    <li><a href="{% url 'app02:customer-complaint' %}" class="nav-link">Complaint if Any</a></li>
+    <br />
+    <li><a href="{% url 'app02:article-list' %}" class="nav-link">Blogs</a></li>
+    <br />
+    <li><a href="{% url 'app02:author-list' %}" class="nav-link">Writers</a></li>
+    <li><a href="{% url 'app02:author-create' %}" class="nav-link">Add Writer</a></li>
 </ul>

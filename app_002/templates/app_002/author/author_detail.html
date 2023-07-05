@@ -11,13 +11,8 @@
 {% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
 <!--  -->
 {% block main %}
-
-<h1>Form View</h1>
-
-<form method="post">
-    <p>Are you sure you want to delete it?</p>
-    {% csrf_token %}
-    <p>{{ object.name }}</p>
-    <input type="submit" value="Delete" />
-</form>
+<h1>{{object.name}}</h1>
+<h2>{{object.contact}}</h2>
+<a href="{% url 'app02:author-update' object.pk %}" class="link"><button>Update</button></a>
+<a href="{% url 'app02:author-delete' object.pk %}" class="link"><button>Delete</button></a>
 {% endblock main %}

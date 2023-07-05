@@ -9,5 +9,10 @@
 {% block navbar %} {% include "app_002/_navbar.html" %} {% endblock navbar %}
 <!--  -->
 {% block main %}
-<h2>Django -> views -> generic -> DetailView</h2>
+<h1>{{about}}</h1>
+<div class="blogs-and-authors">
+    <h2>Blogs - {{articles}}</h2>
+    <h2>Writers - {{authors}}</h2>
+</div>
+<p>origin : {{origin}}</p>
 {% endblock main %}
