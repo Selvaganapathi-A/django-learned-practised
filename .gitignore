@@ -171,4 +171,4 @@ files/media/
 .ruff_cache/
 
 # Windows files
-.desktop.ini
+*/.desktop.ini
