@@ -169,3 +169,6 @@ files/media/
 
 # ruff stuff
 .ruff_cache/
+
+# Windows files
+.desktop.ini
