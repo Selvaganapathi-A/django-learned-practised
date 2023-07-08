@@ -1,9 +1,15 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 import datetime
+import functools
+import os
+import re
 import uuid
+
+import pytz
 
 # Create your models here.
 
@@ -12,31 +18,48 @@ one to one relationship example.
 """
 
 
+def current_month_start():
+    current_date = datetime.date.today()
+    india = pytz.timezone("Asia/Calcutta")
+    return datetime.datetime(
+        current_date.year, current_date.month, 1, 0, 0, 0, tzinfo=india
+    )
+
+
+def custom_upload_dir(instance, filename, path_to_save: str):
+    filename = instance.isbn + os.path.splitext(filename)[-1]
+    return os.path.join(path_to_save, filename)
+
+
+def mobile_number_validator(value: str):
+    if not re.match(r"^\+91\-[9876]\d{2}\-\d{3}\-\d{4}$", value):
+        raise ValidationError(
+            "provide '+91-000-000-0000' in this format.",
+            params={"value": value},
+        )
+
+
 class Author(models.Model):
-    name = models.CharField(max_length=64)
-    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=200, unique=True)
+    mobile = models.CharField(
+        max_length=16,
+        validators=[mobile_number_validator],
+        help_text='Mobile Number in "+91-000-000-0000".',
+    )
+    email = models.EmailField()
+
+    def get_absolute_url(self):
+        return reverse_lazy("app03:author-detail", kwargs={"pk": self.pk})
 
     def __str__(self) -> str:
-        return f"<Author> : {self.name}"
+        return f"{self.name}"
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=128)
-    isbn = models.UUIDField(default=uuid.uuid4, primary_key=True, auto_created=True, editable=False)
-    edition = models.IntegerField(default=1)
-    pages = models.IntegerField(default=0)
-    language = models.CharField(max_length=64)
-    date_published = models.DateTimeField(default=timezone.now, validators=[])
-
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="books", )
-
-    _date_created = models.DateTimeField(auto_now_add=True)
-    _date_modified = models.DateTimeField(auto_now=True)  # Everytime updated
-
     class Meta:
         db_table = "app_03_book"
         get_latest_by = ["date_published", "_date_created"]
-        # order_with_respect_to = "author"
+        # *** order_with_respect_to = "author"
         ordering = (
             models.F("author__name").asc(nulls_last=True),
             models.F("title").asc(nulls_last=True),
@@ -54,8 +77,8 @@ class Book(models.Model):
                 name="must contain atleast 10 pages.",
             ),
             models.CheckConstraint(
-                check=models.Q(date_published__lte=(timezone.now() - datetime.timedelta(days=30))),
-                name="must be published prior to 30 days.",
+                check=models.Q(date_published__lte=current_month_start()),
+                name="must be published before a month.",
             ),
         ]
         verbose_name = "Book"
@@ -63,6 +86,32 @@ class Book(models.Model):
         unique_together = [
             ("title", "edition", "author"),
         ]
+
+    isbn = models.UUIDField(
+        default=uuid.uuid4, primary_key=True, auto_created=True, editable=False
+    )
+    title = models.CharField(max_length=128)
+    edition = models.IntegerField(default=1)
+    pages = models.IntegerField(default=0)
+    language = models.CharField(max_length=64)
+    date_published = models.DateTimeField(default=timezone.now, validators=[])
+    cover_image = models.ImageField(
+        upload_to=functools.partial(
+            custom_upload_dir,
+            path_to_save="app_003/book-cover/",
+        ),
+    )
+
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="books",
+    )
+    _date_created = models.DateTimeField(
+        auto_now_add=True
+    )  # Added when object is created
+    _date_modified = models.DateTimeField(auto_now=True)  # Everytime updated
 
 
 if __name__ == "__main__":
@@ -144,5 +193,4 @@ if __name__ == "__main__":
     # Maxim's Primer
     # 2a6fbd46-f778-469b-8043-59d6926a934e
     # English
-
     pass

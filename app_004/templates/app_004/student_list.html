@@ -1,0 +1,35 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_004/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+
+<h2>Student List</h2>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<br />
+<ul>
+    {% for student in object_list %}
+    <li><a href="{% url 'app04:studentdetail' student.unique_id %}"> {{student.name}} - {{student.age}}</a></li>
+    {% empty %}
+    <li>No Students yet.</li>
+    {% endfor %}
+</ul>
+{% endblock main %}

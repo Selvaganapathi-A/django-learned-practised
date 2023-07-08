@@ -1,0 +1,39 @@
+.form
+    margin: 1rem
+
+    >div + div
+        margin-top: 2rem
+
+    > div
+        display: flex
+        justify-content: flex-start
+        align-items: flex-start
+        flex-flow: column nowrap
+
+        > label
+            text-transform: uppercase
+
+    textarea, input
+        resize: none
+        padding: .4em
+
+    fieldset
+        padding: .5em
+
+        > div
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-flow: row nowrap
+
+    .errorlist
+        list-style-type: none
+        color: red
+
+    div:has(.errorlist)
+        border: 3px red solid
+        border-radius: 1rem
+
+.form > *
+    margin: .5rem
+    padding: 1rem

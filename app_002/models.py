@@ -1,25 +1,16 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 
-import re
+from . import validators
 
 # Create your models here.
-
-
-def mobile_number_validator(value: str):
-    if not re.match(r"^\+91\-[9876]\d{2}\-\d{3}\-\d{4}$", value):
-        raise ValidationError(
-            "provide '+91-000-000-0000' in this format.",
-            params={"value": value},
-        )
 
 
 class Author(models.Model):
     name = models.CharField(max_length=200, unique=True)
     contact = models.CharField(
         max_length=16,
-        validators=[mobile_number_validator],
+        validators=(validators.mobile_number_validator,),
         help_text='Mobile Number in "+91-000-000-0000".',
     )
 

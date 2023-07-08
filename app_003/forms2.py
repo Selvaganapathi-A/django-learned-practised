@@ -45,7 +45,12 @@ class Person(forms.Form):
         max_length=64,
         initial="Family Name, Father name or Initial.",
         widget=forms.widgets.Textarea(
-            attrs={"placeholder": "Last Name", "rows": 10, "cols": 30, "class": "form-field"}
+            attrs={
+                "placeholder": "Last Name",
+                "rows": 10,
+                "cols": 30,
+                "class": "form-field",
+            }
         ),
     )
     mobile = forms.CharField(

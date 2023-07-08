@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
-import subprocess
 import sys
 
 
 def main():
+    import subprocess
+
     subprocess.run(
         ("cls",),
         shell=True,

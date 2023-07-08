@@ -1,14 +1,13 @@
-from django.http import HttpRequest, request
-from django.http.request import HttpRequest
-from django.http.response import HttpResponse
+from django.core import paginator
+from django.http import HttpRequest
 from django.shortcuts import render
-from django.views.generic import ArchiveIndexView, CreateView, DateDetailView
-from django.views.generic import DayArchiveView, DeleteView, DetailView, FormView
-from django.views.generic import ListView, MonthArchiveView, RedirectView, TemplateView
-from django.views.generic import TodayArchiveView, UpdateView, View, WeekArchiveView
-from django.views.generic import YearArchiveView
+from django.views import generic
 
-from typing import Any
+from typing import Iterable
+
+import uuid
+
+from . import models
 
 # Create your views here.
 
@@ -23,36 +22,42 @@ def index(req: HttpRequest):
     )
 
 
-class MyTemplateView(TemplateView):
-    template_name = "app_004/experimental/index.html"
-    template_engine = None
-
-    ### Here or urlconf
-    # extra_context = {
-    #     "web_page_title": "Template View",
-    # }
-
-    http_method_names = ["get", "post"]
-
-    content_type = "text/html"
-
-    # def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-    #     return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, *args, **kwargs: Any) -> dict[str, Any]:
-        context = super(MyTemplateView, self).get_context_data(*args, **kwargs)
-        # context["web_page_title"] = "Another Title"
-        context["sequence"] = (0, 8, 6, 4, 2, 9, 7, 5, 3, 1)
-        return context
+def person_detail(req: HttpRequest, pk: uuid.UUID):
+    person: models.Person = models.Person.objects.get(pk=pk)
+    return render(
+        request=req,
+        template_name="app_004/person/detail.html",
+        context={
+            "web_page_title": "App 004",
+            "person": person,
+        },
+    )
 
 
-# print(dir(MyTemplateView))
-# print()
-# print(dir(Homeview.as_view()))
-# print()
-# help(Homeview)
-# print()
+def person_list(req: HttpRequest):
+    people: Iterable[models.Person] = models.Person.objects.all()
+    pages: paginator.Paginator = paginator.Paginator(people, 3)
+    current_page = 4
+    go = pages.get_elided_page_range(current_page, on_each_side=2, on_ends=1)
+    print(go)
+
+    return render(
+        request=req,
+        template_name="app_004/person/list.html",
+        context={
+            "web_page_title": "App 004",
+            "persons": people,
+        },
+    )
 
 
-class MyCreateView(CreateView):
-    pass
+class StudentDetail(generic.DetailView):
+    model = models.Student
+    queryset = models.Student.objects.all()
+
+
+class StudentList(generic.ListView):
+    model = models.Student
+    queryset = models.Student.objects.all()
+    paginate_by = 5
+    paginate_by = 5

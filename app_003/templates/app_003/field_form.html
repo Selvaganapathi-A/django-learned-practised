@@ -1,0 +1,18 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_003/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Field Form</h1>
+
+<form action="" method="post" enctype="multipart/form-data" class="app-03 form">
+    <div>{% csrf_token %}</div>
+    {{form.as_div}}
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+
+{% endblock main %}

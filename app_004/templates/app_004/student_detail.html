@@ -1,0 +1,55 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_002/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_004/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Student Details of {{object.name}}</h1>
+
+<table>
+    <tr>
+        <td>
+            <img src="{{object.image.url}}" alt="" srcset="" class="student-profile-photo" />
+        </td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>:</td>
+        <td>{{object.name}}</td>
+    </tr>
+    <tr>
+        <td>Father</td>
+        <td>:</td>
+        <td>{{object.father_name}}</td>
+    </tr>
+    <tr>
+        <td>Date of Birth</td>
+        <td>:</td>
+        <td>{{object.date_of_birth|date}}</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>:</td>
+        <td>{{object.age}}</td>
+    </tr>
+</table>
+
+<style>
+    img.student-profile-photo {
+        object-fit: cover;
+        border-radius: 128px;
+        width: 256px;
+        aspect-ratio: 1/1;
+        object-position: 50% 0%;
+        box-shadow: 0 0 20px 4px gray;
+    }
+</style>
+
+{% endblock main %}

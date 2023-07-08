@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 import datetime
-import pprint
 
 from . import models
 
@@ -59,7 +58,7 @@ class AuthorForm(forms.ModelForm):
 
         help_texts = {
             "name": (
-                "Author Name Should not include Iniitials, Father name and Family Names.\nblah"
+                "Author Name Should not include Iniitials, Father name & Family Names."
                 " blah...."
             ),
             "email": "valid email id.",
@@ -71,7 +70,12 @@ class PersonForm(forms.Form):
     last_name = forms.CharField(
         max_length=64,
         widget=forms.widgets.Textarea(
-            attrs={"placeholder": "Last Name", "rows": 10, "cols": 30, "class": "form-field"}
+            attrs={
+                "placeholder": "Last Name",
+                "rows": 10,
+                "cols": 30,
+                "class": "form-field",
+            }
         ),
     )
     mobile = forms.CharField(
@@ -182,9 +186,9 @@ class PersonForm(forms.Form):
                     "oh la la la..",
                 ],
             )
-        if self.cleaned_data.get("marriage_day", datetime.date(2003, 12, 31)) > datetime.date(
-            2003, 12, 31
-        ):
+        if self.cleaned_data.get(
+            "marriage_day", datetime.date(2003, 12, 31)
+        ) > datetime.date(2003, 12, 31):
             self.errors["marriage_day"] = self.error_class(
                 [
                     "minor marriage not allowed.",

@@ -1,7 +1,5 @@
-from django.http import HttpRequest, HttpResponse, HttpResponsePermanentRedirect
-from django.http import HttpResponseRedirect, StreamingHttpResponse
+from django.http import HttpRequest
 from django.shortcuts import render
-from django.template import loader, Template
 
 # Create your views here.
 
@@ -21,7 +19,9 @@ def index(req: HttpRequest):
 
 # # Page not found
 # handler404 = "index.views.my_custom_page_not_found_view"
-def my_custom_page_not_found_view(request: HttpRequest, exception: Exception | None = None):
+def my_custom_page_not_found_view(
+    request: HttpRequest, exception: Exception | None = None
+):
     return render(
         request=request,
         template_name="404.html",
@@ -46,7 +46,9 @@ def my_custom_error_view(request: HttpRequest, exception: Exception | None = Non
 
 # # Permission Denied
 # handler403 = "index.views.my_custom_permission_denied_view"
-def my_custom_permission_denied_view(request: HttpRequest, exception: Exception | None = None):
+def my_custom_permission_denied_view(
+    request: HttpRequest, exception: Exception | None = None
+):
     return render(
         request=request,
         template_name="403.html",
@@ -58,7 +60,9 @@ def my_custom_permission_denied_view(request: HttpRequest, exception: Exception 
 
 # # Bad Request
 # handler400 = "index.views.my_custom_bad_request_view"
-def my_custom_bad_request_view(request: HttpRequest, exception: Exception | None = None):
+def my_custom_bad_request_view(
+    request: HttpRequest, exception: Exception | None = None
+):
     return render(
         request=request,
         template_name="400.html",

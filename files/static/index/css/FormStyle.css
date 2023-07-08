@@ -1,0 +1,41 @@
+.form {
+  margin: 1rem;
+}
+.form > div + div {
+  margin-top: 2rem;
+}
+.form > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+}
+.form > div > label {
+  text-transform: uppercase;
+}
+.form textarea, .form input {
+  resize: none;
+  padding: 0.4em;
+}
+.form fieldset {
+  padding: 0.5em;
+}
+.form fieldset > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+.form .errorlist {
+  list-style-type: none;
+  color: red;
+}
+.form div:has(.errorlist) {
+  border: 3px red solid;
+  border-radius: 1rem;
+}
+
+.form > * {
+  margin: 0.5rem;
+  padding: 1rem;
+}/*# sourceMappingURL=FormStyle.css.map */

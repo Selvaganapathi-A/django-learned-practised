@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 
 import datetime
 
+
 def simple_middleware(get_response):
     def middleware(req: HttpRequest):
         # print
@@ -58,10 +59,29 @@ class SimpleMiddleware:
             value="busters",
             max_age=1440,
         )
+        response.set_cookie(
+            "tony",
+            value="stink",
+            max_age=1440,
+        )
 
         # Code to be executed for each request/response after
         # the view is called.
 
-        response.headers["last-updated"] = "098098098"
+        response["OwnerLLC"] = "Google.co.in"
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+
+        # Code to be executed for each request/response after
+        # the view is called.
+
+        # ! https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+        # ! Content Security Policy
+        response["Server"] = "Apache 2.6"
+        response["created-by"] = "selvaganapathi066@gmail.com"
+        response["Content-Security-Policy"] = (
+            """default-src 'self'; img-src 'self';script-src-elem 'self';"""
+        )
+        response["Content-Security-Policy-Report-Only"] = "script-src-elem"
 
         return response

@@ -8,4 +8,9 @@ app_name: str = "app05"
 # add your routes here.
 urlpatterns = [
     path("", views.index, name="index"),
+    path(
+        "reset-password",
+        views.PasswordResetView.as_view(),
+        name="reset-password",
+    ),
 ]

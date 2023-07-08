@@ -165,3 +165,7 @@ cython_debug/
 .config/
 .script/
 migrations/
+files/media/
+
+# ruff stuff
+.ruff_cache/

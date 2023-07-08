@@ -8,13 +8,9 @@ app_name: str = "app04"
 # add your routes here.
 urlpatterns = [
     path("", views.index, name="index"),
+    path("studentlist/", views.StudentList.as_view(), name="studentlist"),
     path(
-        "templateview/",
-        views.MyTemplateView.as_view(
-            extra_context={
-                "web_page_title": "🍫 View",
-            }
-        ),
-        name="templateview",
+        "studentdetail/<uuid:pk>/", views.StudentDetail.as_view(), name="studentdetail"
     ),
+    path("person/list/", views.person_list, name="person-list"),
 ]
