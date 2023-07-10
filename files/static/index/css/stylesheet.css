@@ -22,3 +22,8 @@ body {
     padding: 0 1rem;
     text-wrap: balance;
 }
+
+ul {
+    list-style-type: none;
+    margin: 2rem;
+}

@@ -58,8 +58,8 @@ class AuthorForm(forms.ModelForm):
 
         help_texts = {
             "name": (
-                "Author Name Should not include Iniitials, Father name & Family Names."
-                " blah...."
+                "Author Name Should not include Iniitials, Father name & Family"
+                " Names. blah...."
             ),
             "email": "valid email id.",
         }
@@ -88,7 +88,9 @@ class PersonForm(forms.Form):
         ),
         error_messages={
             "invalid": "Enter Valid mobile number.",
-            "required": "10 digit valid indian mobile number only accepted currently.",
+            "required": (
+                "10 digit valid indian mobile number only accepted currently."
+            ),
         },
         max_length=10,
         min_length=10,
@@ -109,9 +111,10 @@ class PersonForm(forms.Form):
         widget=forms.widgets.EmailInput(
             attrs={
                 "class": "email",
-            },
+                "required": False,
+            }
         ),
-        label="Email",
+        label="Email Address",
         validators=[
             email_validator,
         ],
@@ -172,6 +175,9 @@ class PersonForm(forms.Form):
             # print(field)
             # print(field.__dict__)
             # print(dir(field))
+        self.fields["mail"].widget.attrs["class"] += " email-address"
+        self.fields["mail"].widget.attrs["placeholder"] = "gggggg@gggggg.ggg"
+        self.fields["mail"].widget.attrs["type"] = "email"
 
     def clean(self):
         super(PersonForm, self).clean()

@@ -18,3 +18,14 @@
     <li><a href="{% url 'app10:index' %}" class="nav-link icon">🦍</a></li>
     <li><a href="{% url 'app10:index' %}" class="nav-link icon">🐅</a></li>
 </ul>
+<ul class="nav-bar primary">
+    {% if user and user.is_authenticated %}
+    <li>
+        <a href="{% url 'ua:index' %}" class="nav-link icon"><span class="login-animation">🔑</span></a>
+    </li>
+    {% else %}
+    <li>
+        <a href="{% url 'ua:index' %}" class="nav-link icon"><span class="login-animation">🔒</span></a>
+    </li>
+    {% endif %}
+</ul>

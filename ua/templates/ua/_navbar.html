@@ -1,0 +1,9 @@
+<ul class="nav-bar secondary">
+    {% if user and user.is_authenticated %}
+    <li><a href="{% url 'ua:logout' %}" class="nav-link">Logout</a></li>
+    <li><a href="{% url 'ua:dashboard' %}" class="nav-link">Dashboard</a></li>
+    {% else %}
+    <li><a href="{% url 'ua:login' %}" class="nav-link">Login</a></li>
+    <li><a href="{% url 'ua:signup' %}" class="nav-link">signup</a></li>
+    {% endif %}
+</ul>

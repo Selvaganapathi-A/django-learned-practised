@@ -56,9 +56,6 @@ class PasswordResetView(View):
         )
 
 
-print(dir(PasswordResetView))
-
-
 if __name__ == "__main__":
     print(
         User,

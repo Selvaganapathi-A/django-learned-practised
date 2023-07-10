@@ -22,12 +22,19 @@ from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    # ! -------------------------------------------------------------------- ! #
     path(
         "favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.png")),
     ),
+    # ! -------------------------------------------------------------------- ! #
+    # https://docs.djangoproject.com/en/4.2/ref/contrib/admin/admindocs/
+    path("admin/doc/", include("django.contrib.admindocs.urls")),
     path("admin/", admin.site.urls),
+    # https://docs.djangoproject.com/en/4.2/ref/contrib/admin/admindocs/
+    # ! -------------------------------------------------------------------- ! #
     path("", include("index.urls", namespace="index")),
+    path("user-authendication/", include("ua.urls", namespace="ua")),
     path("app01/", include("app_001.urls", namespace="app_001")),
     path("app02/", include("app_002.urls", namespace="app_002")),
     path("app03/", include("app_003.urls", namespace="app_003")),

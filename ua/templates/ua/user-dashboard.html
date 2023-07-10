@@ -1,0 +1,25 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "ua/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Dashboard.</h1>
+{% if all_users %}
+<ul>
+    {% for user in all_users %}
+    <li>
+        <div>
+            <p class="name">Name : {{user.first_name}} - {{user.last_name}}</p>
+            <p class="email">Email : {{user.email}}</p>
+        </div>
+        <hr />
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="name">{{user.first_name}}</p>
+<p class="name">{{user.last_name}}</p>
+<p class="email">{{user.email}}</p>
+{% endif %} {% endblock main %}

@@ -1,0 +1,16 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "ua/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Login</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <div>{{form.as_div}}</div>
+    <div>
+        <input type="submit" value="login" />
+    </div>
+</form>
+{% endblock main %}
