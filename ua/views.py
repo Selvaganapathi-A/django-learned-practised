@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.http.request import HttpHeaders, HttpRequest
@@ -57,27 +58,62 @@ and in urls.py
 """
 
 
-class DashboardView(generic.View):
-    template_name: str = "ua/user-dashboard.html"
+class CreateUserView(generic.View):
+    """
+    User Create User.....
+    -> Get method to provide form.
+    -> post method to get data and validate and save new user.
+    """
+
+    template_name: str = "ua/user-create.html"
 
     def get(self, request: HttpRequest):
-        if request.content_type == "application/json":
-            return JsonResponse(
-                data={
-                    "aqi": "82",
-                    "wind": "5kms nw",
-                }
+        if request.user.is_authenticated:
+            messages.error(
+                request,
+                message=(
+                    "User already signed in. Signout before create another"
+                    " user."
+                ),
             )
-        all_users = []
-        if request.user.is_authenticated and request.user.is_superuser:
-            all_users = User.objects.all().order_by("first_name")
-
+            return redirect(to=reverse_lazy("ua:dashboard"))
         return render(
             request=request,
             template_name=self.template_name,
             context={
-                "web_page_title": "Dashboard",
-                "all_users": all_users,
+                "web_page_title": "Create User",
+                "form": forms.SignupUserForm(),
+                "user": request.user,
+            },
+        )
+
+    def post(self, request: HttpRequest):
+        if request.user.is_authenticated:
+            print("access failed. as user is signed in.")
+            messages.error(
+                request,
+                message=(
+                    "User already signed in. Signout before create another"
+                    " user."
+                ),
+            )
+            return redirect(to=reverse_lazy("ua:dashboard"))
+        data = request.POST.items()
+        for key, value in data:
+            print(key)
+            print("\t", value)
+        form = forms.SignupUserForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            user: User = form.save(commit=True)
+            login(request, user)
+            messages.success(request, message="User Registered Successfully.")
+            return redirect(to=reverse_lazy("ua:dashboard"))
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context={
+                "web_page_title": "Create User",
+                "form": form,
                 "user": request.user,
             },
         )
@@ -126,71 +162,36 @@ class LoginUserView(generic.View):
         )
 
 
+@login_required(
+    redirect_field_name="bagasoore",
+    login_url=reverse_lazy("ua:login"),
+)
 def logout_user(request: HttpRequest):
     logout(request)
     return redirect(to=reverse_lazy("ua:index"))
 
 
-class CreateUserView(generic.View):
-    """
-    User Create User.....
-
-    Get method to provide form
-
-    post method to get data and validate and save new user.
-
-    """
-
-    template_name: str = "ua/user-create.html"
+class DashboardView(generic.View):
+    template_name: str = "ua/user-dashboard.html"
 
     def get(self, request: HttpRequest):
-        if request.user.is_authenticated:
-            print("access failed. as user is signed in.")
-            messages.error(
-                request,
-                message=(
-                    "User already signed in. Signout before create another"
-                    " user."
-                ),
+        if request.content_type == "application/json":
+            return JsonResponse(
+                data={
+                    "aqi": "82",
+                    "wind": "5kms nw",
+                }
             )
-            return redirect(to=reverse_lazy("ua:dashboard"))
-        return render(
-            request=request,
-            template_name=self.template_name,
-            context={
-                "web_page_title": "Create User",
-                "form": forms.SignupUserForm(),
-                "user": request.user,
-            },
-        )
+        all_users = []
+        if request.user.is_authenticated and request.user.is_superuser:  # type: ignore
+            all_users = User.objects.all().order_by("first_name")
 
-    def post(self, request: HttpRequest):
-        if request.user.is_authenticated:
-            print("access failed. as user is signed in.")
-            messages.error(
-                request,
-                message=(
-                    "User already signed in. Signout before create another"
-                    " user."
-                ),
-            )
-            return redirect(to=reverse_lazy("ua:dashboard"))
-        data = request.POST.items()
-        for key, value in data:
-            print(key)
-            print("\t", value)
-        form = forms.SignupUserForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            user: User = form.save(commit=True)
-            login(request, user)
-            messages.success(request, message="User Registered Successfully.")
-            return redirect(to=reverse_lazy("ua:dashboard"))
         return render(
             request=request,
             template_name=self.template_name,
             context={
-                "web_page_title": "Create User",
-                "form": form,
+                "web_page_title": "Dashboard",
+                "all_users": all_users,
                 "user": request.user,
             },
         )

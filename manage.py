@@ -5,12 +5,12 @@ import sys
 
 
 def main():
-    import subprocess
+    # import subprocess
 
-    subprocess.run(
-        ("cls",),
-        shell=True,
-    )
+    # subprocess.run(
+    #     ("cls",),
+    #     shell=True,
+    # )
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Organisation.settings")
     try:

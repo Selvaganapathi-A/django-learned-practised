@@ -11,9 +11,11 @@ urlpatterns = [
     path(
         "dashboard/",
         view=login_required(
-            views.DashboardView.as_view(), login_url=reverse_lazy("ua:login")
+            views.DashboardView.as_view(),
+            redirect_field_name="aduthathu_enna",
+            login_url=reverse_lazy("ua:login"),
         ),
         name="dashboard",
     ),
-    path("logout/",views.logout_user, name="logout"),
+    path("logout/", views.logout_user, name="logout"),
 ]
