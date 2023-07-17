@@ -8,9 +8,9 @@ from . import validators
 
 class MobileNumber(models.Model):
     mobile_number = models.CharField(
-        max_length=100,
+        max_length=12,
         validators=(validators.mobile_number_validator,),
-        help_text="`000-000-0000`. Enter like this!",
+        help_text="`000 000 0000`. Enter like this!",
     )
 
     def __str__(self) -> str:
@@ -50,7 +50,9 @@ class Person(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=GenderChoices.choices)
-    phone_number = models.ManyToManyField(to=MobileNumber)
+    phone_number = models.OneToOneField(
+        to=MobileNumber, on_delete=models.CASCADE
+    )
     email = models.ManyToManyField(to=Email, blank=True)
     address = models.ForeignKey(to=Address, on_delete=models.CASCADE)
     nationality = models.CharField(max_length=25)

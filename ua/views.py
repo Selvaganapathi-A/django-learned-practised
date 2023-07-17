@@ -148,7 +148,15 @@ class LoginUserView(generic.View):
             request=request, data=request.POST, files=request.FILES
         )
         if not form.is_valid():
-            return redirect(to=reverse_lazy("ua:login"))
+            return render(
+                request=request,
+                template_name=self.template_name,
+                context={
+                    "web_page_title": "Login User",
+                    "form": form,
+                    "user": request.user,
+                },
+            )
         username = request.POST.get("username", None)
         password = request.POST.get("password", None)
         user = authenticate(request, username=username, password=password)

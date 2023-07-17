@@ -1,0 +1,50 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% load humanize %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_010/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Humanize.</h1>
+<br />
+<p>{{b_day|naturaltime}}</p>
+<p>{{rand_datetime|naturaltime}}</p>
+<br />
+<p>{{rand_date|naturalday}}</p>
+<br />
+<p>{{1|apnumber}}</p>
+<p>{{3|apnumber}}</p>
+<p>{{9|apnumber}}</p>
+<p>{{8|apnumber}}</p>
+<br />
+<p>{{4000|intcomma}}</p>
+<p>{{4000000|intcomma}}</p>
+<p>{{4000000000|intcomma}}</p>
+<p>{{4000000000000|intcomma}}</p>
+<p>{{4000000000000000|intcomma}}</p>
+<p>{{4000000000000000000|intcomma}}</p>
+<p>{{4000000000000000000000|intcomma}}</p>
+<p>{{4000000000000000000000000|intcomma}}</p>
+<p>{{4000000000000000000000000000|intcomma}}</p>
+<br />
+<p>{{4000|intword}}</p>
+<p>{{4000000|intword}}</p>
+<p>{{4000000000|intword}}</p>
+<p>{{4000000000000|intword}}</p>
+<p>{{4000000000000000|intword}}</p>
+<p>{{4000000000000000000|intword}}</p>
+<p>{{4000000000000000000000|intword}}</p>
+<p>{{4000000000000000000000000|intword}}</p>
+<p>{{4000000000000000000000000000|intword}}</p>
+<p>{{4000000000000000000000000000000|intword}}</p>
+<br />
+<p>{{1|ordinal}}</p>
+<p>{{2|ordinal}}</p>
+<p>{{3|ordinal}}</p>
+<p>{{4|ordinal}}</p>
+<p>{{7|ordinal}}</p>
+<p>{{22|ordinal}}</p>
+<br />
+{% endblock main %}

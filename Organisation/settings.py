@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     # Admin Docs Generator
     "django.contrib.admindocs",
+    # humanize inputs into human readable format.
+    "django.contrib.humanize",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.messages",
