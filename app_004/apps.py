@@ -5,7 +5,7 @@ class App004Config(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "app_004"
 
-    def ready(self) -> None:
-        from . import signals
+    # def ready(self) -> None:
+    #     from . import signals
 
-        return super().ready()
+    #     return super().ready()

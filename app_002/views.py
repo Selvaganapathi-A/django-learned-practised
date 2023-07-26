@@ -95,8 +95,8 @@ class ArticleAuthorList(TemplateView):
     ) -> HttpResponse:
         context = self.get_context_data()
         context["origin"] = "Madras University"
-        context["articles"] = models.Article.objects.count()
-        context["authors"] = models.Article.objects.count()
+        # context["articles"] = models.Article.objects.count()
+        # context["authors"] = models.Article.objects.count()
         return self.render_to_response(context=context)
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -156,69 +156,69 @@ https://docs.djangoproject.com/en/4.2/topics/pagination/#paginating-a-list-view
 """
 
 
-class ArticleList(ListView):
-    """List View Example"""
+# class ArticleList(ListView):
+#     """List View Example"""
 
-    model = models.Article
-    paginate_by = 10
-    template_name = r"app_002\article\article_list.html"
-    queryset = models.Article.objects.order_by("headline")
-
-
-class AuthorList(ListView):
-    """List View Example"""
-
-    model = models.Author
-    paginate_by = 10
-    template_name = r"app_002\author\author_list.html"
-    queryset = models.Author.objects.order_by("name")
+#     model = models.Article
+#     paginate_by = 10
+#     template_name = r"app_002\article\article_list.html"
+#     queryset = models.Article.objects.order_by("headline")
 
 
-# *** Detail View ***
-class ArticleDetail(DetailView):
-    """Detail View Example"""
+# class AuthorList(ListView):
+#     """List View Example"""
 
-    model = models.Article
-    template_name = r"app_002\article\article_detail.html"
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context = super(ArticleDetail, self).get_context_data()
-        context["contents"] = self.object.content.split("\n")  # type:ignore
-        context.update(kwargs)
-        return context
+#     model = models.Author
+#     paginate_by = 10
+#     template_name = r"app_002\author\author_list.html"
+#     queryset = models.Author.objects.order_by("name")
 
 
-class AuthorDetail(DetailView):
-    """Detail View Example"""
+# # *** Detail View ***
+# class ArticleDetail(DetailView):
+#     """Detail View Example"""
 
-    model = models.Author
-    template_name = r"app_002\author\author_detail.html"
+#     model = models.Article
+#     template_name = r"app_002\article\article_detail.html"
 
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context = super(AuthorDetail, self).get_context_data()
-        context.update(kwargs)
-        return context
-
-
-# *** Create View *** #
-class AuthorCreate(CreateView):
-    model = models.Author
-    fields = ("name", "contact")
-    template_name = "app_002/author/author_create.html"
+#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+#         context = super(ArticleDetail, self).get_context_data()
+#         context["contents"] = self.object.content.split("\n")  # type:ignore
+#         context.update(kwargs)
+#         return context
 
 
-# *** Update View *** #
-class AuthorUpdate(UpdateView):
-    model = models.Author
-    fields = ("name", "contact")
-    # template_name_suffix = "_update"
-    # template_name_field = "app_002/author/author"
-    template_name = "app_002/author/author_update.html"
+# class AuthorDetail(DetailView):
+#     """Detail View Example"""
+
+#     model = models.Author
+#     template_name = r"app_002\author\author_detail.html"
+
+#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+#         context = super(AuthorDetail, self).get_context_data()
+#         context.update(kwargs)
+#         return context
 
 
-# *** Delete View *** #
-class AuthorDelete(DeleteView):
-    model = models.Author
-    fields = ("name", "contact")
-    template_name = "app_002/author/author_delete.html"
-    success_url = reverse_lazy("app02:author-list")
+# # *** Create View *** #
+# class AuthorCreate(CreateView):
+#     model = models.Author
+#     fields = ("name", "contact")
+#     template_name = "app_002/author/author_create.html"
+
+
+# # *** Update View *** #
+# class AuthorUpdate(UpdateView):
+#     model = models.Author
+#     fields = ("name", "contact")
+#     # template_name_suffix = "_update"
+#     # template_name_field = "app_002/author/author"
+#     template_name = "app_002/author/author_update.html"
+
+
+# # *** Delete View *** #
+# class AuthorDelete(DeleteView):
+#     model = models.Author
+#     fields = ("name", "contact")
+#     template_name = "app_002/author/author_delete.html"
+#     success_url = reverse_lazy("app02:author-list")

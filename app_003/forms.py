@@ -4,7 +4,10 @@ from django.utils.translation import gettext_lazy as _
 
 import datetime
 
+from app_010.app_forms.Author import AuthorForm
+
 from . import models
+
 
 """
 
@@ -13,7 +16,7 @@ for details refer:-
         -- form meta options
 
     2) https://ordinarycoders.com/blog/article/using-django-form-fields-and-widgets
-        -- info text
+        -- for demo
 
     3) https://docs.djangoproject.com/en/4.2/topics/forms/
         -- for rendering form in html
@@ -35,34 +38,6 @@ def email_validator(value: str):
         )
     else:
         print("value ok", f"{value} provider is from google.")
-
-
-class AuthorForm(forms.ModelForm):
-    class Meta:
-        model = models.Author
-        fields = ["name", "email"]  # fields to include
-        # exclude = ['email'] # fields to exclude from form
-        widgets = {
-            "name": forms.widgets.TextInput(
-                attrs={
-                    "class": "form-field author-name",
-                    "id": "author-name",
-                    "required": True,
-                }
-            ),
-        }
-        labels = {
-            "name": "Author Name",
-            "email": "Author Contact Mail ID",
-        }
-
-        help_texts = {
-            "name": (
-                "Author Name Should not include Iniitials, Father name & Family"
-                " Names. blah...."
-            ),
-            "email": "valid email id.",
-        }
 
 
 class PersonForm(forms.Form):
