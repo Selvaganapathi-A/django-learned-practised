@@ -1,6 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 
+
 # Create your views here.
 
 
@@ -34,7 +35,9 @@ def my_custom_page_not_found_view(
 
 # # Server Error
 # handler500 = "index.views.my_custom_error_view"
-def my_custom_error_view(request: HttpRequest, exception: Exception | None = None):
+def my_custom_error_view(
+    request: HttpRequest, exception: Exception | None = None
+):
     return render(
         request=request,
         template_name="500.html",

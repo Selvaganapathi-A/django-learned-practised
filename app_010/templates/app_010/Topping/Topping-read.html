@@ -1,0 +1,26 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_010/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_010/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+
+<h1>{{object.name}} - {{object.pizza.count}}</h1>
+<ol>
+    {% for pizza in object.pizza.all %}
+    <li>
+        <a href="{% url 'app10:pizza-read' pizza.pk %}"> {{pizza.name}} </a>
+    </li>
+    {% endfor %}
+</ol>
+
+<a href="{% url 'app10:topping-change' object.pk %}" class="link"><button>Update</button></a>
+<a href="{% url 'app10:topping-delete' object.pk %}" class="link"><button>Delete</button></a>
+{% endblock main %}

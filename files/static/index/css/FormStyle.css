@@ -12,6 +12,10 @@
 }
 .form > div > label {
   text-transform: uppercase;
+  color: green;
+}
+.form > div > div.helptext {
+  color: pink;
 }
 .form textarea, .form input {
   resize: none;

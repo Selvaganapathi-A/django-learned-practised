@@ -1,0 +1,21 @@
+
+{% extends "index/_base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_010/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_010/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Update DemoO2O</h1>
+<form method="post" action="{% url 'app10:demoo2o-change' object.pk %}" >
+    {% csrf_token %} {{ form.as_div }}
+    <input type="submit" value="Save" />
+</form>
+{% endblock main %}
+

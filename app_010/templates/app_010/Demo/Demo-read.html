@@ -1,0 +1,166 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block stylesheet %}
+<!--  -->
+<link rel="stylesheet" href="{% static 'app_010/css/stylesheet.css' %}" />
+<!--  -->
+{% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_010/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+
+<h1>Demo</h1>
+<table>
+    <tbody>
+        <tr>
+            <td>Small Auto Field</td>
+            <td>{{object.small_auto_field}}</td>
+        </tr>
+        <tr>
+            <td>Boolean Field</td>
+            <td>{{object.boolean_field}}</td>
+        </tr>
+        <tr>
+            <td>URL Field</td>
+            <td>{{object.url_field}}</td>
+        </tr>
+        <tr>
+            <td>Char Field</td>
+            <td>{{object.char_field_1}}</td>
+        </tr>
+        <tr>
+            <td>Char Field Select</td>
+            <td>{{object.char_field_2}}</td>
+        </tr>
+        <tr>
+            <td>Char Field Multi Select</td>
+            <td>{{object.char_field}}</td>
+        </tr>
+        <tr>
+            <td>Json Field</td>
+            <td>{{object.json_field}}</td>
+        </tr>
+        <tr>
+            <td>Slug Field</td>
+            <td>{{object.slug_field}}</td>
+        </tr>
+        <tr>
+            <td>email Field</td>
+            <td>{{object.email_field}}</td>
+        </tr>
+        <tr>
+            <td>uuid Field</td>
+            <td>{{object.uuid_field}}</td>
+        </tr>
+        <tr>
+            <td>ip address Field</td>
+            <td>{{object.generic_ipaddress_field}}</td>
+        </tr>
+        <tr>
+            <td>(textarea) Text Field</td>
+            <td>{{object.text_field}}</td>
+        </tr>
+        <tr>
+            <td>Date Field</td>
+            <td>{{object.date_field}}</td>
+        </tr>
+        <tr>
+            <td>Date time Field</td>
+            <td>{{object.datetime_field}}</td>
+        </tr>
+        <tr>
+            <td>time Field</td>
+            <td>{{object.time_field}}</td>
+        </tr>
+        <tr>
+            <td>Duration Field</td>
+            <td>{{object.duration_field}}</td>
+        </tr>
+        <tr>
+            <td>Big Integer Field</td>
+            <td>{{object.big_integer_field}}</td>
+        </tr>
+        <tr>
+            <td>Positive big Integer Field</td>
+            <td>{{object.positive_big_integer_field}}</td>
+        </tr>
+        <tr>
+            <td>Integer Field</td>
+            <td>{{object.integer_field}}</td>
+        </tr>
+        <tr>
+            <td>Positive Integer Field</td>
+            <td>{{object.positive_integer_field}}</td>
+        </tr>
+        <tr>
+            <td>Small Integer Field</td>
+            <td>{{object.small_integer_field}}</td>
+        </tr>
+        <tr>
+            <td>Small Integer Field</td>
+            <td>{{object.positive_small_integer_field}}</td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>float Field</td>
+            <td>{{object.float_field}}</td>
+        </tr>
+        <tr>
+            <td>decimal Field</td>
+            <td>{{object.decimal_field}}</td>
+        </tr>
+        <tr>
+            <td>File Field</td>
+            {% if object.file_field %}
+            <td>
+                <a href="{{object.file_field.url}}" target="_blank" rel="noopener noreferrer" download> Download Me.</a>
+            </td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>File Path Field</td>
+            {% if object.filepath_field %}
+            <td>{{object.filepath_field.url}}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>image Field</td>
+            {% if object.image_field %}
+            <td><img src="{{object.image_field.url}}" alt="" srcset="" /></td>
+            {% else %}
+            <td>No File Stored.</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>forien key Field</td>
+            <td>{{object.fk_field.fkfield}}</td>
+        </tr>
+        <tr>
+            <td>M2M Field</td>
+            <td>
+                <ol>
+                    {% for m2mfield in object.m2m_field.all %}
+                    <li>- {{m2mfield.m2mfield}} -</li>
+                    {% endfor %}
+                </ol>
+            </td>
+            <td>count: {{object.m2m_field.count}}</td>
+        </tr>
+        <tr>
+            <td>O2o Field</td>
+            <td>{{object.o2o_field.o2ofield}}</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
+
+<a href="{% url 'app10:demo-change' object.pk %}" class="link"><button>Update</button></a>
+<a href="{% url 'app10:demo-delete' object.pk %}" class="link"><button>Delete</button></a>
+{% endblock main %}

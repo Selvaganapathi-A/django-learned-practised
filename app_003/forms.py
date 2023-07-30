@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 import datetime
 
-from app_010.app_forms.Author import AuthorForm
+from app_010.form.Author import AuthorForm
 
 from . import models
 

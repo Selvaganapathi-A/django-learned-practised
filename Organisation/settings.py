@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -114,10 +115,32 @@ WSGI_APPLICATION = "Organisation.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASE_ROUTERS = [
+#     "Organisation.db_router.AuthRouter",
+#     "Organisation.db_router.PrimaryReplicaRouter",
+#     "Organisation.db_router.defaultRouter",
+# ]
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
+    },
+    "auth_db": {
+        "NAME": BASE_DIR / "auth.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
+    },
+    "primary": {
+        "NAME": BASE_DIR / "primary.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
+    },
+    "replica1": {
+        "NAME": BASE_DIR / "replica1.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
+    },
+    "replica2": {
+        "NAME": BASE_DIR / "replica2.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
     },
     "postgresql": {
         "ENGINE": "django.db.backends.postgresql",

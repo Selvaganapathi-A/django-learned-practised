@@ -10,7 +10,6 @@ from django.views.generic.edit import UpdateView
 
 from typing import Any, Dict
 
-from . import forms, models
 
 # Create your views here.
 
@@ -131,12 +130,12 @@ class PermenantRedirect(RedirectView):
 
 class CustomerComplaints(FormView):
     template_name = "app_002/complaint/customer-complaint-form.html"
-    form_class = forms.ComplaintForm
+    # form_class = forms.ComplaintForm
     success_url = reverse_lazy("app02:index")
 
-    def form_valid(self, form: forms.ComplaintForm) -> HttpResponse:
-        form.send_mail()
-        return super().form_valid(form)
+    # def form_valid(self, form: forms.ComplaintForm) -> HttpResponse:
+    #     form.send_mail()
+    #     return super().form_valid(form)
 
 
 # *** List View ***
