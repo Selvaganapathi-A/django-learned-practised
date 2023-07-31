@@ -1,0 +1,13 @@
+{% extends "index/_base.html" %}
+<!--  -->
+{% block stylesheet %} {% endblock stylesheet %}
+<!--  -->
+{% block navbar %} {% include "app_010/_navbar.html" %} {% endblock navbar %}
+<!--  -->
+{% block main %}
+<h1>Form Set</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{formset.as_div}}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock main %}

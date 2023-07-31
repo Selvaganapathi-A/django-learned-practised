@@ -1,14 +1,7 @@
-
-from django.http.request import HttpRequest
-from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.db.models import F
 from django.urls import reverse_lazy
-from django.db.models import F, Q
-from django.views import View
-from django.views.generic import DetailView, ListView, RedirectView
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, DeleteView, FormView
-from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from typing import Any, Dict
 
@@ -60,4 +53,3 @@ class TeacherDeleteView(DeleteView):
     fields = "__all__"
     template_name = r"app_010/Teacher/Teacher-delete.html"
     success_url = reverse_lazy("app10:teacher-read-list")
-

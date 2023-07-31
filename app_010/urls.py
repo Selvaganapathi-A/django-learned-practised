@@ -645,4 +645,6 @@ urlpatterns += (
     + TAG_urlpatterns
     + TEACHER_urlpatterns
     + TOPPING_urlpatterns
-)
+) + [
+    path("fs/", view.Formset.Formset_Pizza.formset_view, name="fs"),
+]
